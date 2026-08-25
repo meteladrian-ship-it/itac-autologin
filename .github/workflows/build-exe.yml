@@ -1,0 +1,30 @@
+name: Build Autologin EXE
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Pobierz kod z repozytorium
+      uses: actions/checkout@v4
+
+    - name: Zainstaluj Pythona
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Zainstaluj PyInstallera i PyAutoGUI
+      run: |
+        pip install pyinstaller pyautogui
+
+    - name: Skompiluj skrypt do pliku EXE
+      run: |
+        pyinstaller --noconsole --onefile autologin.py
+
+    - name: Zapisz gotowy plik EXE jako paczkę (Artifact)
+      uses: actions/upload-artifact@v4
+      with:
+        name: itac-autologin-exe
+        path: dist/autologin.exe
