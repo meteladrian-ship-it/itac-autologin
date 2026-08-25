@@ -4,22 +4,19 @@ import pyautogui
 
 pyautogui.FAILSAFE = True
 
-# 1. Uruchomienie programu ITAC
+# 1. Uruchomienie programu z jawnie wskazanym folderem roboczym (cwd)
 subprocess.Popen(
-    r"C:\Users\ametel\Desktop\ITAC Rework Tools\ITAC Rework Tools.exe"
+    r"C:\Users\ametel\Desktop\ITAC Rework Tools\ITAC Rework Tools.exe",
+    cwd=r"C:\Users\ametel\Desktop\ITAC Rework Tools"
 )
 
 # 2. Odczekaj 4 sekundy na załadowanie okna
 time.sleep(4)
 
-# 3. Klikamy w pole użytkownika (zakładamy, że okno otwiera się na środku ekranu lub po prostu używamy bezpiecznych tabulatorów)
-# Wyczyśćmy pole i wpiszemy login
-pyautogui.press('tab') # upewnienie się co do fokusu
+# 3. Wpisanie loginu
 pyautogui.write("cze2.lead")
+pyautogui.press("tab")  # Przejście do pola hasła
 
-# 4. Przejście do pola hasła
-pyautogui.press("tab")
-
-# 5. Wpisanie hasła i zatwierdzenie
+# 4. Wpisanie hasła i zatwierdzenie
 pyautogui.write("PASSWORD")
 pyautogui.press("enter")
